@@ -9,7 +9,7 @@ object Measure {
     	val start = System.nanoTime
     	val result = a
     	val micros = (System.nanoTime - start) / 1000
-    	println(micros + " microseconds")
+    	println(micros + " microseconds")	
     	result
 	}
 
@@ -22,4 +22,16 @@ object Measure {
 		val micros = (System.nanoTime - start) / 1000
 		(result, micros)
 	}
+}
+
+object Times {
+	case class IntTimes(count: Int) {
+		def times[A](a : => A) {
+			for(i <- 1 to count) {
+				val r = a
+			}
+		}
+	}
+
+	implicit def intWithTimes(i: Int) = IntTimes(i)
 }
